@@ -17,6 +17,7 @@ conjunto cB; //tipo de dato de cada conjunto
 int aleatorio; //variable para guardar valor aleatorio
 int rango; // indica el inicio de un rango aleatorio
 
+//imprime cualquier arreglo
 void imprime(int arr[], int tamanyo){
     for(int j=1;j<=tamanyo;j++){
         cout<<arr[j];
@@ -83,8 +84,6 @@ void uni(){
     }
 
 }
-
-
 int main()
 {
     puts("Escribe cuantos elementos aleatorios para el conjunto A");
