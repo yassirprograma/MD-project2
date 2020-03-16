@@ -32,6 +32,141 @@ int posuni=1; //guarda la cardinalidad de la union
 int inter[22]; //conjunto de interseccion
 int posinter=1; //guardara la cardinalidad de la interseccion
 
+int dif_ab[22];
+int posdif_ab=1;
+
+int dif_ba[22];
+int posdif_ba=1;
+
+int compa[22];
+int poscompa=1;
+
+int poscompb=1;
+int compb[22];
+
+int posdifsim=1;
+int difesim[22];
+
+void difsim(){
+     for(int i=0;i<=10;i++){
+        if((cA.bucket[i]>=1 && cB.bucket[i]==0) || (cB.bucket[i]>=1 && cA.bucket[i]==0)){ //recorre la cubeta de ambos arreglos viendo si el valor solo esta en A
+            difesim[posdifsim]=i; //guarda los valores en el conjunto de interseccion
+            posdifsim++;
+        }
+    }
+    posdifsim--;
+    cout<<"La diferencia simetrica es:"<<endl;
+    if(posdifsim!=0){
+        cout<<"{";
+        for(int i=1;i<=posdifsim;i++){
+            cout<<difesim[i];
+            if(i<posdifsim)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
+    }
+}
+
+void compA(){
+	int universe = 0;
+    for(int i=0;i<10;i++){
+    	universe++;
+        if(cA.bucket[i]>=1 != universe>=1){ //recorre la cubeta de ambos arreglos viendo si en ambos está el valor
+            compa[poscompa]=i; //guarda los valores en el conjunto de interseccion
+            poscompa++;
+        }
+    }
+    poscompa--;
+    //imprime el conjunto interseccion
+    printf(" El complemento del conjunto A es: \n");
+
+    if(poscompa!=0){
+        cout<<"{";
+        for(int i=1;i<=poscompa;i++){
+            cout<<compa[i];
+            if(i<poscompa)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
+    }
+
+}
+
+void compB(){
+	int universe = 0;
+    for(int i=0;i<10;i++){
+    	universe++;
+        if(cB.bucket[i]>=1 != universe>=1){ //recorre la cubeta de ambos arreglos viendo si en ambos está el valor
+            compb[poscompb]=i; //guarda los valores en el conjunto de interseccion
+            poscompb++;
+        }
+    }
+    poscompb--;
+    //imprime el conjunto interseccion
+    printf(" El complemento del conjunto B es: \n");
+
+    if(poscompb!=0){
+        cout<<"{";
+        for(int i=1;i<=poscompb;i++){
+            cout<<compb[i];
+            if(i<poscompb)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
+    }
+
+}
+
+void diferab(){
+    for(int i=0;i<=10;i++){
+        if(cA.bucket[i]>=1 && cB.bucket[i]==0){ //recorre la cubeta de ambos arreglos viendo si el valor solo esta en A
+            dif_ab[posdif_ab]=i; //guarda los valores en el conjunto de interseccion
+            posdif_ab++;
+        }
+    }
+    posdif_ab--;
+    cout<<"La diferencia de A con B"<<endl;
+    if(posdif_ab!=0){
+        cout<<"{";
+        for(int i=1;i<=posdif_ab;i++){
+            cout<<dif_ab[i];
+            if(i<posdif_ab)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
+    }
+
+}
+void diferba(){
+    for(int i=0;i<=10;i++){
+        if(cB.bucket[i]>=1 && cA.bucket[i]==0){ //recorre la cubeta de ambos arreglos viendo si el valor solo esta en B
+            dif_ba[posdif_ba]=i; //guarda los valores en el conjunto de interseccion
+            posdif_ba++;
+        }
+    }
+    posdif_ba--;
+    cout<<"La diferencia de B con A"<<endl;
+    if(posdif_ba!=0){
+        cout<<"{";
+        for(int i=1;i<=posdif_ba;i++){
+            cout<<dif_ba[i];
+            if(i<posdif_ba)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
+    }
+
+}
 
 void intersec(){
     //hace la union de dos conjuntos
@@ -58,7 +193,6 @@ void intersec(){
     }
 
 }
-
 void uni(){
     //hace la union de dos conjuntos
     for(int i=0;i<=10;i++){
@@ -70,7 +204,8 @@ void uni(){
     posuni--;
 
     //imprime el conjunto union
-    printf(" La union del conjunto A con el conjunto B es: \n");
+    cout<<"La union del conjunto A con el conjunto B es: "<<endl;
+
     if(posuni!=0){
         cout<<"{";
         for(int i=1;i<=posuni;i++){
@@ -116,8 +251,9 @@ int main()
 
     cout<<"Cuya cardinalidad es:"<<cA.posabsoluto-1<<endl; //imprimer la cardinalidad
     cout<<endl;
+
     //Conjunto B
-    //rango=rand()%10+1; //genera un rango aleatorio entre 1 y 10
+    rango=rand()%10+1; //genera un rango aleatorio entre 1 y 10
     for(int i=1;i<=cB.tam;i++){
             aleatorio=rand()%rango+0; //genera un numero aleatorio en un rango aleatorio
             cB.conjuntoconrepetidos[i]=aleatorio; //manda el valor aleatorio actual a un arreglo
@@ -138,7 +274,7 @@ int main()
     cout<<"El conjunto B sin repetidos es: {";
     imprime(cB.conjuntoabsoluto,cB.posabsoluto-1); cout<<"}"<<endl; //imprime el conjunto sin repetir elementos
 
-    cout<<"Cuya cardinalidad es:"<<cB.posabsoluto-1<<endl; //imprimer la cardinalidad
+    cout<<"Cuya cardinalidad es:"<<cB.posabsoluto-1<<endl<<endl; //imprimer la cardinalidad
 /*
     ERICK, SI TE CONFUNDES DESCOMENTA ESTE PEDAZO DE CODIGO Y PUEDES VER COMO ESTÁ LA CUBETA DE CADA UNO
     printf(" LA CUBETA DE A ES :\n");
@@ -153,7 +289,19 @@ int main()
     cout<<endl;
 */
     uni();
+    cout<<endl;
     intersec();
+    cout<<endl;
+    compA();
+    cout<<endl;
+    compB();
+    cout<<endl;
+    diferab();
+    cout<<endl;
+    diferba();
+    cout<<endl;
+    difsim();
+
 
     return 0;
 }
