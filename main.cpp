@@ -25,10 +25,10 @@ void imprime(int arr[], int tamanyo){
 }
 
 // VARIABLES PARA LAS OPERACIONES
-int unio[22];
+int unio[22]; //conjunto de union
 int posuni=1; //guarda la cardinalidad de la union
 
-int inter[22];
+int inter[22]; //conjunto de interseccion
 int posinter=1; //guardara la cardinalidad de la interseccion
 
 
@@ -36,18 +36,24 @@ void intersec(){
     //hace la union de dos conjuntos
     for(int i=0;i<=10;i++){
         if(cA.bucket[i]>=1 && cB.bucket[i]>=1){ //recorre la cubeta de ambos arreglos viendo si en ambos está el valor
-            inter[posinter]=i;
+            inter[posinter]=i; //guarda los valores en el conjunto de interseccion
             posinter++;
         }
     }
     posinter--;
-    //imprime
+    //imprime el conjunto interseccion
     printf(" La interseccion del conjunto A con el conjunto B es: \n");
-    if(posinter==0){
+
+    if(posinter!=0){
+        cout<<"{";
         for(int i=1;i<=posinter;i++){
-            cout<<inter[i]<<" ";
+            cout<<inter[i];
+            if(i<posinter)cout<<",";
         }
+        cout<<"}";
         cout<<endl;
+    } else {
+        cout<<" VACIO"<<endl;
     }
 
 }
@@ -56,17 +62,26 @@ void uni(){
     //hace la union de dos conjuntos
     for(int i=0;i<=10;i++){
         if(cA.bucket[i]>=1 || cB.bucket[i]>=1){ //recorre la cubeta de ambos arreglos viendo si en alguno está el valor
-            unio[posuni]=i;
+            unio[posuni]=i; //guarda los valores en el conjunto de union
             posuni++;
         }
     }
     posuni--;
-    //imprime
+
+    //imprime el conjunto union
     printf(" La union del conjunto A con el conjunto B es: \n");
-    for(int i=1;i<=posuni;i++){
-        cout<<unio[i]<<" ";
+    if(posuni!=0){
+        cout<<"{";
+        for(int i=1;i<=posuni;i++){
+            cout<<unio[i];
+            if(i<posuni)cout<<",";
+        }
+        cout<<"}";
+        cout<<endl;
+    } else {
+        cout<<"VACIO"<<endl;
     }
-    cout<<endl;
+
 }
 
 
